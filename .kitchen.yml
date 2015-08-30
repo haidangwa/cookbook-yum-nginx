@@ -13,7 +13,7 @@ platforms:
   - name: centos-7.1
 
 suites:
-  - name: dflt_w_ym
+  - name: default
     run_list:
       - recipe[test::yum_utils]
       - recipe[yum-nginx]
@@ -25,7 +25,7 @@ suites:
       - centos-6.6
       - centos-7.1
 
-  - name: mnln_w_ym
+  - name: mainline
     run_list:
       - recipe[test::yum_utils]
       - recipe[yum-nginx]
@@ -44,7 +44,7 @@ suites:
       - centos-6.6
       - centos-7.1
 
-  - name: stbl_src_w_ym
+  - name: stable_source
     run_list:
       - recipe[test::yum_utils]
       - recipe[yum-nginx]
@@ -61,7 +61,7 @@ suites:
           nginx-stable-source:
             managed: true
 
-  - name: mnln_src_w_ym
+  - name: mainline_source
     run_list:
       - recipe[test::yum_utils]
       - recipe[yum-nginx]
