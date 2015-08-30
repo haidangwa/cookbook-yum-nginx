@@ -5,7 +5,7 @@
 
 # RHEL platform support for this cookbook and the NGINX repository.  Designed
 # to be a private attribute however it can be overridden in the case NGINX
-# supports additional platforms and this cookbook has not been update yet.
+# supports additional versions and this cookbook has not been updated yet.
 #
 # This check was implemented as a result of the repo could be successfully
 # installed yet not be valid for a given platform and an NGINX package could
