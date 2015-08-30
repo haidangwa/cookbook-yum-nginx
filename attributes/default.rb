@@ -13,8 +13,8 @@
 # platform it which it was run which results in a false positive for the
 # consumer of the cookbook.
 #
-# The hash key is the codename of the OS/version.  If the hash value evaluates
-# to true, the OS/version is considered supported.
+# The hash key is the major version of the OS.  If the hash value evaluates to
+# true, the OS/version is considered supported.
 
 default['yum-nginx']['rhel']['supported-versions'] = {
   '5' => true,

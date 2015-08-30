@@ -18,8 +18,10 @@ Requirements
 Attributes
 ----------
 #### yum-nginx::default
-The default recipe installs & configures yum NGINX repositories per
-http://nginx.org/en/linux_packages.html.
+The default recipe is for installing & configuring the yum NGINX repostories.
+Any attribute supported by the [yum cookbook](https://github.com/chef-cookbooks/yum#parameters)
+is supported by this cookbook and can be used to override attributes in this
+cookbook.
 
 Per http://wiki.nginx.org/Install, there are currently two versions of NGINX.
 The mainline branch gets new features and bugfixes sooner but might introduce
@@ -27,13 +29,9 @@ new bugs as well.  Critical bugfixes are backported to the stable branch.  In
 general, the stable release is recommended, but the mainline release is
 typically quite stable as well.
 
-The default recipe is for installing & configuring the yum NGINX repostories.
-Any attribute supported by the [yum cookbook](https://github.com/chef-cookbooks/yum#parameters)
-is supported by this cookbook and can be used to override attributes in this
-cookbook.
-
 - `['yum-nginx']['rhel']['supported-versions']`
   - _Type:_ Hash
+
   - _Description:_
 
     RHEL platform support for this cookbook and the NGINX repository.  Designed
@@ -46,8 +44,9 @@ cookbook.
     platform it which it was run which results in a false positive for the
     consumer of the cookbook.
 
-    The hash key is the codename of the OS/version.  If the hash value evaluates
-    to true, the OS/version is considered supported.
+    The hash key is the major version of the OS.  If the hash value evaluates to
+    true, the OS/version is considered supported.
+    
   - _Default:_
 
     ```ruby

@@ -17,7 +17,7 @@ suites:
     run_list:
       - recipe[test::yum_utils]
       - recipe[yum-nginx]
-      - recipe[test::install_nginx]
+      - recipe[nginx-pkg]
     includes:
       - centos-5.11-i386
       - centos-5.11
@@ -29,7 +29,7 @@ suites:
     run_list:
       - recipe[test::yum_utils]
       - recipe[yum-nginx]
-      - recipe[test::install_nginx]
+      - recipe[nginx-pkg]
     attributes:
       yum-nginx:
         repos:
@@ -48,7 +48,7 @@ suites:
     run_list:
       - recipe[test::yum_utils]
       - recipe[yum-nginx]
-      - recipe[test::install_nginx_source]
+      - recipe[nginx-pkg]
     includes:
       - centos-5.11-i386
       - centos-5.11
@@ -65,7 +65,7 @@ suites:
     run_list:
       - recipe[test::yum_utils]
       - recipe[yum-nginx]
-      - recipe[test::install_nginx_source]
+      - recipe[nginx-pkg]
     includes:
       - centos-5.11-i386
       - centos-5.11
