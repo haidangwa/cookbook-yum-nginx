@@ -1,0 +1,71 @@
+driver:
+  name: docker
+
+provisioner:
+  name: chef_zero
+
+platforms:
+  # https://hub.docker.com/_/centos/
+  - name: centos-5
+  - name: centos-6
+  - name: centos-7
+
+suites:
+  - name: dflt_w_ym
+    run_list:
+      - recipe[test::yum_utils]
+      - recipe[yum-nginx]
+      - recipe[nginx-pkg]
+    includes:
+      - centos-5
+      - centos-6
+      - centos-7
+
+  - name: mnln_w_ym
+    run_list:
+      - recipe[test::yum_utils]
+      - recipe[yum-nginx]
+      - recipe[nginx-pkg]
+    attributes:
+      yum-nginx:
+        repos:
+          nginx-stable:
+            managed: false
+          nginx-mainline:
+            managed: true
+    includes:
+      - centos-5
+      - centos-6
+      - centos-7
+
+  - name: stbl_src_w_ym
+    run_list:
+      - recipe[test::yum_utils]
+      - recipe[yum-nginx]
+      - recipe[test::install_nginx_source]
+    includes:
+      - centos-5
+      - centos-6
+      - centos-7
+    attributes:
+      yum-nginx:
+        repos:
+          nginx-stable-source:
+            managed: true
+
+  - name: mnln_src_w_ym
+    run_list:
+      - recipe[test::yum_utils]
+      - recipe[yum-nginx]
+      - recipe[test::install_nginx_source]
+    includes:
+      - centos-5
+      - centos-6
+      - centos-7
+    attributes:
+      yum-nginx:
+        repos:
+          nginx-mainline:
+            managed: true
+          nginx-mainline-source:
+            managed: true
