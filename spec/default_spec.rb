@@ -80,13 +80,13 @@ describe 'yum-nginx' do
       let(:chef_run) do
         ChefSpec::SoloRunner.new(platform: 'redhat', version: '7.0') do |node|
           node.set['yum-nginx']['repos']['nginx-new']['managed'] = true
-          node.set['yum-nginx']['repos']['nginx-new']['yum']['repositoryid'] = 'nginx-new'
-          node.set['yum-nginx']['repos']['nginx-new']['yum']['description'] = 'nginx New'
-          node.set['yum-nginx']['repos']['nginx-new']['yum']['baseurl'] = 'http://path.to.nginx'
-          node.set['yum-nginx']['repos']['nginx-new']['yum']['gpgcheck'] = true
-          node.set['yum-nginx']['repos']['nginx-new']['yum']['gpgkey'] = 'file://path/to/gpg/key'
-          node.set['yum-nginx']['repos']['nginx-new']['yum']['sslverify'] = false
-          node.set['yum-nginx']['repos']['nginx-new']['yum']['enabled'] = true
+          node.set['yum-nginx']['repos']['nginx-new']['repositoryid'] = 'nginx-new'
+          node.set['yum-nginx']['repos']['nginx-new']['description'] = 'nginx New'
+          node.set['yum-nginx']['repos']['nginx-new']['baseurl'] = 'http://path.to.nginx'
+          node.set['yum-nginx']['repos']['nginx-new']['gpgcheck'] = true
+          node.set['yum-nginx']['repos']['nginx-new']['gpgkey'] = 'file://path/to/gpg/key'
+          node.set['yum-nginx']['repos']['nginx-new']['sslverify'] = false
+          node.set['yum-nginx']['repos']['nginx-new']['enabled'] = true
         end.converge(described_recipe)
       end
 
@@ -125,7 +125,7 @@ describe 'yum-nginx' do
     end
 
     it 'should raise an error' do
-      expect { chef_run }.to raise_error('rhel/redhat/7.0 is not supported by the _yum recipe')
+      expect { chef_run }.to raise_error('rhel/redhat/7.0 is not supported by the default recipe')
     end
   end
 end
