@@ -13,7 +13,8 @@ platform = node['platform']
 platform_version = node['platform_version']
 
 fail("#{platform_family}/#{platform}/#{platform_version} is not supported by the default recipe") \
-  unless platform_family?('rhel') && node['yum-nginx']['rhel']['supported-versions']
+  unless platform_family?('rhel') &&
+         node['yum-nginx']['rhel']['supported-versions']
          .select { |_version, is_included| is_included }
          .keys
          .include?(platform_version.to_i.to_s)
