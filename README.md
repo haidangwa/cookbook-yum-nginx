@@ -17,7 +17,7 @@ Requirements
 
 Attributes
 ----------
-#### nginx-repo::default
+#### yum-nginx::default
 The default recipe installs & configures yum NGINX repositories per
 http://nginx.org/en/linux_packages.html.
 
@@ -185,14 +185,14 @@ cookbook.
 
 Usage
 -----
-#### nginx-repo::default
-Just include `nginx-repo` in your node's `run_list`:
+#### yum-nginx::default
+Just include `yum-nginx` in your node's `run_list`:
 
 ```json
 {
   "name":"my_node",
   "run_list": [
-    "recipe[nginx-repo]"
+    "recipe[yum-nginx]"
   ]
 }
 ```
