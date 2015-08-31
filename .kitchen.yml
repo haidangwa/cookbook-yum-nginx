@@ -1,0 +1,81 @@
+driver:
+  name: vagrant
+
+provisioner:
+  name: chef_zero
+
+platforms:
+  # https://github.com/chef/bento
+  - name: centos-5.11-i386
+  - name: centos-5.11
+  - name: centos-6.6-i386
+  - name: centos-6.6
+  - name: centos-7.1
+
+suites:
+  - name: default
+    run_list:
+      - recipe[test::yum_utils]
+      - recipe[yum-nginx]
+      - recipe[nginx-pkg]
+    includes:
+      - centos-5.11-i386
+      - centos-5.11
+      - centos-6.6-i386
+      - centos-6.6
+      - centos-7.1
+
+  - name: mainline
+    run_list:
+      - recipe[test::yum_utils]
+      - recipe[yum-nginx]
+      - recipe[nginx-pkg]
+    attributes:
+      yum-nginx:
+        repos:
+          nginx-stable:
+            managed: false
+          nginx-mainline:
+            managed: true
+    includes:
+      - centos-5.11-i386
+      - centos-5.11
+      - centos-6.6-i386
+      - centos-6.6
+      - centos-7.1
+
+  - name: stable_source
+    run_list:
+      - recipe[test::yum_utils]
+      - recipe[yum-nginx]
+      - recipe[test::install_nginx_source]
+    includes:
+      - centos-5.11-i386
+      - centos-5.11
+      - centos-6.6-i386
+      - centos-6.6
+      - centos-7.1
+    attributes:
+      yum-nginx:
+        repos:
+          nginx-stable-source:
+            managed: true
+
+  - name: mainline_source
+    run_list:
+      - recipe[test::yum_utils]
+      - recipe[yum-nginx]
+      - recipe[test::install_nginx_source]
+    includes:
+      - centos-5.11-i386
+      - centos-5.11
+      - centos-6.6-i386
+      - centos-6.6
+      - centos-7.1
+    attributes:
+      yum-nginx:
+        repos:
+          nginx-mainline:
+            managed: true
+          nginx-mainline-source:
+            managed: true
