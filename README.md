@@ -10,18 +10,14 @@ http://nginx.org/en/linux_packages.html.
 
 Requirements
 ------------
-- Chef 11 or higher
-- Ruby 1.9 or higher (preferably from the Chef full-stack installer)
+- Chef 12.14 or higher
+- Ruby 2.3 or higher (preferably from the Chef omnibus installer)
 - Network accessible package repositories
-- [yum Cookbook](https://supermarket.chef.io/cookbooks/yum)
 
 Attributes
 ----------
 #### yum-nginx::default
 The default recipe is for installing & configuring the yum NGINX repostories.
-Any attribute supported by the [yum cookbook](https://github.com/chef-cookbooks/yum#parameters)
-is supported by this cookbook and can be used to override attributes in this
-cookbook.
 
 Per http://wiki.nginx.org/Install, there are currently two versions of NGINX.
 The mainline branch gets new features and bugfixes sooner but might introduce
@@ -51,7 +47,7 @@ typically quite stable as well.
 
     ```ruby
     {
-      '5' => true,
+      '5' => false,
       '6' => true,
       '7' => true
     }
@@ -88,6 +84,10 @@ typically quite stable as well.
     - _Type:_ Boolean
     - _Description:_ Whether or not the NGINX Stable Repo is enabled?
     - _Default:_ `true`
+  - `['yum-nginx']['repos']['nginx-stable']['make_cache']`
+    - _Type:_ Boolean
+    - _Description:_ Whether or not the NGINX Stable Repo is stored in cache?
+    - _Default:_ `true`
 - NGINX Stable Source Repo
   - `['yum-nginx']['repos']['nginx-stable-source']['managed']`
     - _Type:_ Boolean
@@ -119,6 +119,10 @@ typically quite stable as well.
   - `['yum-nginx']['repos']['nginx-stable-source']['enabled']`
     - _Type:_ Boolean
     - _Description:_ Whether or not the NGINX Stable Source Repo is enabled?
+    - _Default:_ `true`
+  - `['yum-nginx']['repos']['nginx-stable-source']['make_cache']`
+    - _Type:_ Boolean
+    - _Description:_ Whether or not the NGINX Stable Source Repo is stored in cache?
     - _Default:_ `true`
 - NGINX Mainline Repo
   - `['yum-nginx']['repos']['nginx-mainline']['managed']`
@@ -152,6 +156,10 @@ typically quite stable as well.
     - _Type:_ Boolean
     - _Description:_ Whether or not the NGINX Mainline Repo is enabled?
     - _Default:_ `true`
+  - `['yum-nginx']['repos']['nginx-mainline']['make_cache']`
+    - _Type:_ Boolean
+    - _Description:_ Whether or not the NGINX Mainline Repo is stored in cache?
+    - _Default:_ `true`
 - NGINX Mainline Source Repo
   - `['yum-nginx']['repos']['nginx-mainline-source']['managed']`
     - _Type:_ Boolean
@@ -183,6 +191,10 @@ typically quite stable as well.
   - `['yum-nginx']['repos']['nginx-mainline-source']['enabled']`
     - _Type:_ Boolean
     - _Description:_ Whether or not the NGINX Mainline Source Repo is enabled?
+    - _Default:_ `true`
+  - `['yum-nginx']['repos']['nginx-mainline-source']['make_cache']`
+    - _Type:_ Boolean
+    - _Description:_ Whether or not the NGINX Mainline Source Repo is stored in cache?
     - _Default:_ `true`
 
 Usage

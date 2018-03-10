@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # Cookbook Name:: yum-nginx
 # Attributes:: default
@@ -17,12 +19,12 @@
 # true, the OS/version is considered supported.
 
 default['yum-nginx']['rhel']['supported-versions'] = {
-  '5' => true,
+  '5' => false,
   '6' => true,
   '7' => true
 }
 
-baseurl_prefix = 'http://nginx.org/packages'
+baseurl_prefix = 'https://nginx.org/packages'
 baseurl_suffix = "#{node['platform']}/#{node['platform_version'].to_i}"
 
 default['yum-nginx']['repos'].tap do |repo|
@@ -36,11 +38,15 @@ default['yum-nginx']['repos'].tap do |repo|
     # URL of NGINX Stable Repo
     value['baseurl'] = "#{baseurl_prefix}/#{baseurl_suffix}/$basearch/"
     # Whether or not NGINX Stable Repo should perform GPG check of packages?
-    value['gpgcheck'] = false
+    value['gpgcheck'] = true
+    # URL to the gpg key
+    value['gpgkey'] = "#{baseurl_prefix}/keys/nginx_signing.key"
     # Whether or not yum will verify the NGINX Stable Repo SSL host?
-    value['sslverify'] = false
+    value['sslverify'] = true
     # Whether or not the NGINX Stable Repo is enabled?
     value['enabled'] = true
+    # whether package files downloaded by Yum stay in cache directories
+    value['make_cache'] = true
   end
 
   repo['nginx-stable-source'].tap do |value|
@@ -54,11 +60,15 @@ default['yum-nginx']['repos'].tap do |repo|
     value['baseurl'] = "#{baseurl_prefix}/#{baseurl_suffix}/SRPMS/"
     # Whether or not NGINX Stable Source Repo should perform GPG check of
     #  packages?
-    value['gpgcheck'] = false
+    value['gpgcheck'] = true
+    # URL to the gpg key
+    value['gpgkey'] = "#{baseurl_prefix}/keys/nginx_signing.key"
     # Whether or not yum will verify the NGINX Stable Source Repo SSL host?
-    value['sslverify'] = false
+    value['sslverify'] = true
     # Whether or not the NGINX Stable Source Repo is enabled?
     value['enabled'] = true
+    # whether package files downloaded by Yum stay in cache directories
+    value['make_cache'] = true
   end
 
   repo['nginx-mainline'].tap do |value|
@@ -71,11 +81,15 @@ default['yum-nginx']['repos'].tap do |repo|
     # URL of NGINX Mainline Repo
     value['baseurl'] = "#{baseurl_prefix}/mainline/#{baseurl_suffix}/$basearch/"
     # Whether or not NGINX Mainline Repo should perform GPG check of packages?
-    value['gpgcheck'] = false
+    value['gpgcheck'] = true
+    # URL to the gpg key
+    value['gpgkey'] = "#{baseurl_prefix}/keys/nginx_signing.key"
     # Whether or not yum will verify the NGINX Mainline Repo SSL host?
-    value['sslverify'] = false
+    value['sslverify'] = true
     # Whether or not the NGINX Mainline Repo is enabled?
     value['enabled'] = true
+    # whether package files downloaded by Yum stay in cache directories
+    value['make_cache'] = true
   end
 
   repo['nginx-mainline-source'].tap do |value|
@@ -89,10 +103,14 @@ default['yum-nginx']['repos'].tap do |repo|
     value['baseurl'] = "#{baseurl_prefix}/mainline/#{baseurl_suffix}/SRPMS/"
     # Whether or not NGINX Mainline Source Repo should perform GPG check of
     #  packages?
-    value['gpgcheck'] = false
+    value['gpgcheck'] = true
+    # URL to the gpg key
+    value['gpgkey'] = "#{baseurl_prefix}/keys/nginx_signing.key"
     # Whether or not yum will verify the NGINX Mainline Source Repo SSL host?
-    value['sslverify'] = false
+    value['sslverify'] = true
     # Whether or not the NGINX Mainline Source Repo is enabled?
     value['enabled'] = true
+    # whether package files downloaded by Yum stay in cache directories
+    value['make_cache'] = true
   end
 end

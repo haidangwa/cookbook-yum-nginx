@@ -1,6 +1,8 @@
-script = <<SCRIPT
-# Install Needed Gems
-su -c "cd /vagrant; gem install bundler; bundle install" - vagrant
+# frozen_string_literal: true
+
+script = <<~SCRIPT
+  # Install Needed Gems
+  su -c "cd /vagrant; gem install bundler; bundle install" - vagrant
 SCRIPT
 
 Vagrant.configure('2') do |config|

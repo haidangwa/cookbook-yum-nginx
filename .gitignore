@@ -9,10 +9,8 @@ pkg/
 # Berkshelf
 .vagrant
 /cookbooks
-Berksfile.lock
 
 # Bundler
-Gemfile.lock
 bin/*
 .bundle/*
 
@@ -20,4 +18,4 @@ bin/*
 .kitchen.local.yml
 
 # Test Kitchen tmp Dockerfiles
-Dockerfile-kitchen-*
+Dockerfile-kitchen*

@@ -1,0 +1,12 @@
+DEPENDENCIES
+  nginx-pkg
+  test
+    path: test/fixtures/cookbooks/test
+  yum-nginx
+    path: .
+    metadata: true
+
+GRAPH
+  nginx-pkg (0.1.0)
+  test (0.1.0)
+  yum-nginx (0.2.1)

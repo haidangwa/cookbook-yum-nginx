@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'foodcritic'
 require 'kitchen'
 require 'rspec/core/rake_task'
@@ -50,12 +52,10 @@ desc 'Run all integration tests'
 task integration: ['integration:vagrant', 'integration:docker']
 
 # Publish
-Stove::RakeTask.new do |t|
-  t.stove_opts = ['--extended-metadata']
-end
+Stove::RakeTask.new
 
 # Default
-task default: %w(style unit)
+task default: %w[style unit]
 
 # All tasks
-task all: %w(style unit integration)
+task all: %w[style unit integration]

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # Cookbook Name:: yum-nginx
 # Recipe:: default
@@ -12,7 +14,7 @@ platform_family = node['platform_family']
 platform = node['platform']
 platform_version = node['platform_version']
 
-fail("#{platform_family}/#{platform}/#{platform_version} is not supported by the default recipe") \
+raise("#{platform_family}/#{platform}/#{platform_version} is not supported by the default recipe") \
   unless platform_family?('rhel') &&
          node['yum-nginx']['rhel']['supported-versions']
          .select { |_version, is_included| is_included }
@@ -20,6 +22,24 @@ fail("#{platform_family}/#{platform}/#{platform_version} is not supported by the
          .include?(platform_version.to_i.to_s)
 
 node['yum-nginx']['repos'].each do |repo, value|
+  next unless value['managed']
+
+  # download the GPG Key and import it if not already installed
+  if value['gpgcheck'] && !value['gpgkey'].nil?
+    gpgkey_path = File.join(Dir.tmpdir, 'nginx_signing.key')
+    cookbook_file File.basename(gpgkey_path) do
+      path gpgkey_path
+      notifies :run, 'execute[import gpgkey]', :immediately
+      only_if "rpm -qi gpg-pubkey-7bd9bf62-* | grep 'not installed'"
+    end
+
+    execute 'import gpgkey' do
+      command "rpm --import #{gpgkey_path}"
+      action :nothing
+      only_if "rpm -qi gpg-pubkey-7bd9bf62-* | grep 'not installed'"
+    end
+  end
+
   yum_repository repo do
     # define all attributes even though we are not using them all so that the
     #  values can be passed through to override yum repository definitions
@@ -64,5 +84,5 @@ node['yum-nginx']['repos'].each do |repo, value|
     sslverify value['sslverify'] unless value['sslverify'].nil?
     timeout value['timeout'] unless value['timeout'].nil?
     username value['username'] unless value['username'].nil?
-  end if value['managed']
+  end
 end
