@@ -3,7 +3,8 @@ driver:
 
 provisioner:
   name: chef_zero
-  require_chef_omnibus: 13
+  product_name: chef
+  product_version: 13
 
 platforms:
   # https://github.com/chef/bento
@@ -14,7 +15,7 @@ suites:
   - name: default
     run_list:
       - recipe[test::yum_utils]
-      - recipe[yum-nginx]
+      - recipe[new-yum-nginx]
       - recipe[nginx-pkg]
     includes:
       - centos-6.9
@@ -23,7 +24,7 @@ suites:
   - name: mainline
     run_list:
       - recipe[test::yum_utils]
-      - recipe[yum-nginx]
+      - recipe[new-yum-nginx]
       - recipe[nginx-pkg]
     attributes:
       yum-nginx:
@@ -39,7 +40,7 @@ suites:
   - name: stable_source
     run_list:
       - recipe[test::yum_utils]
-      - recipe[yum-nginx]
+      - recipe[new-yum-nginx]
       - recipe[test::install_nginx_source]
     includes:
       - centos-6.9
@@ -53,7 +54,7 @@ suites:
   - name: mainline_source
     run_list:
       - recipe[test::yum_utils]
-      - recipe[yum-nginx]
+      - recipe[new-yum-nginx]
       - recipe[test::install_nginx_source]
     includes:
       - centos-6.9

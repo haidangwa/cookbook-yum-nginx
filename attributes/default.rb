@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 #
-# Cookbook Name:: yum-nginx
+# Cookbook Name:: new-yum-nginx
 # Attributes:: default
 #
 
