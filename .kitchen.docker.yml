@@ -6,7 +6,8 @@ driver:
 
 provisioner:
   name: chef_zero
-  require_chef_omnibus: 13
+  product_name: chef
+  product_version: 13
 
 platforms:
   # https://hub.docker.com/_/centos/
