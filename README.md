@@ -3,7 +3,8 @@ yum-nginx Cookbook
 [![Build Status](https://travis-ci.org/haidangwa/cookbook-yum-nginx.svg?branch=master)](https://travis-ci.org/haidangwa/cookbook-yum-nginx)
 [![Chef Cookbook](https://img.shields.io/cookbook/v/yum-nginx.svg)](https://supermarket.chef.io/cookbooks/yum-nginx)
 
-As of versino 0.3.0, this cookbook was renamed `new-yum-nginx` from a fork of the original version created by [st-isidore-de-seville](https://github.com/st-isidore-de-seville), who no longer maintains nor has a Github account. `yum-nginx` is the original name, but it can no longer be updated in supermarket.chef.io
+*** Breaking Change ***
+As of version 0.3.0, this cookbook was renamed `new-yum-nginx` from a fork of the original version created by [st-isidore-de-seville](https://github.com/st-isidore-de-seville), who no longer maintains nor has a Github account. `yum-nginx` is the original name, but it can no longer be updated in supermarket.chef.io. If you have included the orginal cookbook in any of your run lists or downstream cookbooks, please update them using the new name.
 
 Installs/Configures yum NGINX Vendor-Specific Repositories.
 
@@ -18,7 +19,7 @@ Requirements
 
 Attributes
 ----------
-#### yum-nginx::default
+#### new-yum-nginx::default
 The default recipe is for installing & configuring the yum NGINX repostories.
 
 Per http://wiki.nginx.org/Install, there are currently two versions of NGINX.
@@ -201,14 +202,14 @@ typically quite stable as well.
 
 Usage
 -----
-#### yum-nginx::default
-Just include `yum-nginx` in your node's `run_list`:
+#### new-yum-nginx::default
+Just include `new-yum-nginx` in your node's `run_list`:
 
 ```json
 {
   "name":"my_node",
   "run_list": [
-    "recipe[yum-nginx]"
+    "recipe[new-yum-nginx]"
   ]
 }
 ```

@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe 'yum-nginx' do
+describe 'new-yum-nginx' do
   describe 'when on redhat 7.4' do
     describe 'by default' do
       let(:chef_run) do
