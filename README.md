@@ -1,7 +1,9 @@
 yum-nginx Cookbook
 ====================
-[![Build Status](https://travis-ci.org/st-isidore-de-seville/cookbook-yum-nginx.svg?branch=master)](https://travis-ci.org/st-isidore-de-seville/cookbook-yum-nginx)
+[![Build Status](https://travis-ci.org/haidangwa/cookbook-yum-nginx.svg?branch=master)](https://travis-ci.org/haidangwa/cookbook-yum-nginx)
 [![Chef Cookbook](https://img.shields.io/cookbook/v/yum-nginx.svg)](https://supermarket.chef.io/cookbooks/yum-nginx)
+
+As of versino 0.3.0, this cookbook was renamed `new-yum-nginx` from a fork of the original version created by [st-isidore-de-seville](https://github.com/st-isidore-de-seville), who no longer maintains nor has a Github account. `yum-nginx` is the original name, but it can no longer be updated in supermarket.chef.io
 
 Installs/Configures yum NGINX Vendor-Specific Repositories.
 
@@ -245,6 +247,7 @@ The Vagrant environment can be spun up by performing the following commands:
 Authors
 -------------------
 - Author:: St. Isidore de Seville (st.isidore.de.seville@gmail.com)
+- Forked by Dang H. Nguyen (haidangwa@gmail.com)
 
 License
 -------------------
