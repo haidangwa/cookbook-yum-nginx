@@ -13,17 +13,20 @@ sudo: required
 branches:
   only:
     - master
-    
+
 services:
   - docker
 
 install:
   - bundle install
 
+before_script:
+  - eval "$(chef shell-init bash)"
+
 script:
-  - /opt/chef-workstation/embedded/bin/rake style
-  - /opt/chef-workstation/embedded/bin/rake unit
-  - /opt/chef-workstation/embedded/bin/kitchen verify
+  - cookstyle
+  - chefspec
+  - kitchen verify
 
 env:
   global:
