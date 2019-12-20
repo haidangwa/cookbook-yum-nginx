@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'foodcritic'
 require 'kitchen'
 require 'rspec/core/rake_task'
 require 'rubocop/rake_task'
@@ -8,15 +7,12 @@ require 'stove/rake_task'
 
 # Style tests
 namespace :style do
-  desc 'Run Ruby style checks'
-  RuboCop::RakeTask.new(:rubocop)
-
   desc 'Run Chef style checks'
-  FoodCritic::Rake::LintTask.new(:foodcritic)
+  FoodCritic::Rake::LintTask.new(:cookstyle)
 end
 
 desc 'Run all style checks'
-task style: ['style:rubocop', 'style:foodcritic']
+task style: ['style:cookstyle']
 
 # Unit tests
 namespace :unit do
@@ -37,10 +33,10 @@ namespace :integration do
     end
   end
 
-  desc 'Run Test Kitchen with Docker'
+  desc 'Run Test Kitchen with Dokken'
   task :docker do
     Kitchen.logger = Kitchen.default_file_logger
-    @loader = Kitchen::Loader::YAML.new(project_config: './.kitchen.docker.yml')
+    @loader = Kitchen::Loader::YAML.new(project_config: './kitchen.dokken.yml')
     config = Kitchen::Config.new(loader: @loader)
     config.instances.each do |instance|
       instance.test(:always)

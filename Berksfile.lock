@@ -7,6 +7,6 @@ DEPENDENCIES
     path: test/fixtures/cookbooks/test
 
 GRAPH
-  new-yum-nginx (0.3.0)
+  new-yum-nginx (0.3.1)
   nginx-pkg (0.1.0)
   test (0.1.0)

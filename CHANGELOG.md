@@ -4,6 +4,12 @@ yum-nginx CHANGELOG
 This file is used to list changes made in each version of the yum-nginx
 cookbook.
 
+0.3.1
+-----
+- Dang Nguyen (haidangwa@gmail.com)
+  - Addresses Github security advisory: GHSA-hrqr-hxpp-chr3
+  - CVE-2019-5477 High severity (nokogiri)
+  
 0.3.0
 -----
 - Dang Nguyen (haidangwa@gmail.com)

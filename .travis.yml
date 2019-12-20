@@ -1,24 +1,32 @@
-# http://www.invalidchecksum.net/2015/08/travis-ci-gce-docker-test-kitchen.html
-language: ruby
+addons:
+  apt:
+    sources:
+      - chef-current-xenial
+    packages:
+      - chef-workstation
+
+env:
+  - CHEF_LICENSE=accept
 
 sudo: required
 
+branches:
+  only:
+    - master
+    
 services:
   - docker
-
-addons:
-  apt:
-    update: true
 
 install:
   - bundle install
 
 script:
-  - bundle exec rake style
-  - bundle exec rake unit
-  - bundle exec kitchen test -d never
+  - /opt/chef-workstation/embedded/bin/rake style
+  - /opt/chef-workstation/embedded/bin/rake unit
+  - /opt/chef-workstation/embedded/bin/kitchen verify
 
 env:
   global:
     - USE_SYSTEM_GECODE=1
-    - KITCHEN_LOCAL_YAML=.kitchen.docker.yml
+    - KITCHEN_LOCAL_YAML=kitchen.dokken.yml
+    - CHEF_LICENSE=accept
