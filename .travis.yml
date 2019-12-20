@@ -5,11 +5,6 @@ addons:
     packages:
       - chef-workstation
 
-env:
-  - CHEF_LICENSE=accept
-
-sudo: required
-
 branches:
   only:
     - master
@@ -23,13 +18,11 @@ install:
 before_script:
   - eval "$(chef shell-init bash)"
 
-script:
-  - cookstyle
-  - chefspec
-  - kitchen verify
-
 env:
-  global:
-    - USE_SYSTEM_GECODE=1
-    - KITCHEN_LOCAL_YAML=kitchen.dokken.yml
-    - CHEF_LICENSE=accept
+  - USE_SYSTEM_GECODE=1
+  - KITCHEN_LOCAL_YAML=kitchen.dokken.yml
+  - CHEF_LICENSE=accept
+    script:
+      - cookstyle
+      - chefspec
+      - kitchen verify
